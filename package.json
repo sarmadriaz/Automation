@@ -1,0 +1,19 @@
+{
+  "name": "cypress-auotmation",
+  "version": "1.0.0",
+  "description": "RCV Cypress Automation",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Sarmad Riaz",
+  "license": "ISC",
+  "devDependencies": {
+    "cypress": "^13.14.2",
+    "cypress-file-upload": "^5.0.8"
+  },
+  "dependencies": {
+    "chai": "^5.1.1",
+    "cypress-real-events": "^1.13.0"
+  }
+}
