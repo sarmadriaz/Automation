@@ -194,5 +194,80 @@ Cypress.Commands.add('DeleteProduct', () => {
 
 })
 
+Cypress.Commands.add('AddToCart', () => {
+  cy.visit('https://automationexercise.com/');
+  cy.get("a[href='/products']").click();
+  cy.get("a[href='/products']").should('have.text',' Products')
+  cy.get('#search_product').type('dress')
+  cy.get('#submit_search > .fa').click()
+  cy.get("a[href='/product_details/3']").click()
+  cy.wait(3000)
+  cy.get('#quantity').clear().type('2')
+  cy.get("button[type='button']").click()
+  cy.get('.modal-title').should('have.text','Added!')
+  cy.get('u').click()
+  cy.get('.active').should('have.text', 'Shopping Cart')
+  cy.contains('Proceed To Checkout').click()
+  cy.get('a:contains("Register / Login")').click()
+  cy.get("input[placeholder='Name']").type('Sarmad riaz')
+  cy.get("input[data-qa='signup-email']").type('sarmadriaz13@gmail.com')
+  cy.get('[data-qa="signup-button"]').click()
+  cy.get('#id_gender1').click()
+  cy.get('[data-qa="password"]').type('Asdf1234@')
+  cy.get('[data-qa="days"]').select('13')
+  cy.get('[data-qa="months"]').select('November')
+  cy.get('[data-qa="years"]').select('2000')
+  cy.get('#newsletter').click()
+  cy.get('[data-qa="first_name"]').type('Sarmad')
+  cy.get('[data-qa="last_name"]').type('Riaz')
+  cy.get('[data-qa="company"]').type('wise 360')
+  cy.get('[data-qa="address"]').type('House no 14 opposite girls hostel kareempura')
+  cy.get('[data-qa="country"]').select('India')
+  cy.get('[data-qa="state"]').type('KPK')
+  cy.get('[data-qa="city"]').type('Abbottabad')
+  cy.get('[data-qa="zipcode"]').type('22010')
+  cy.get('[data-qa="mobile_number"]').type('03165307039')
+  cy.get('[data-qa="create-account"]').click()
+  cy.get('b').should('have.text','Account Created!') 
+ }); 
 
-  
+
+ Cypress.Commands.add('Checkout', () => {
+  cy.visit('https://automationexercise.com/');
+  cy.get("a[href='/login']").click()
+  cy.get('[data-qa="login-email"]').type('sarmadriaz13@gmail.com')
+  cy.get('[data-qa="login-password"]').type('Asdf1234@')
+  cy.get('[data-qa="login-button"]').click()
+  cy.get("a[href='/product_details/1']").click()
+  cy.get("button[type='button']").click()
+  cy.get('u').click()
+  cy.get('.btn.btn-default.check_out').click()
+  cy.get('.btn.btn-default.check_out').click()
+  cy.get('.heading').should('have.text','Payment')
+  cy.get('[data-qa="name-on-card"]').type('Sarmad Riaz')
+  cy.get('[data-qa="card-number"]').type('4242 4242 4242 4242')
+  cy.get('[data-qa="cvc"]').type('804')
+  cy.get('[data-qa="expiry-month"]').type('11')
+  cy.get('[data-qa="expiry-year"]').type('2026')
+  cy.get('[data-qa="pay-button"]').click()
+  cy.get('[data-qa="order-placed"] > b').should('have.text','Order Placed!')
+  cy.get('.col-sm-9 > .btn-default').click()
+
+
+ })
+
+ Cypress.Commands.add('RemoveProduct', () => {
+  cy.visit('https://automationexercise.com/');
+  cy.get("a[href='/login']").click()
+  cy.get('[data-qa="login-email"]').type('sarmadriaz13@gmail.com')
+  cy.get('[data-qa="login-password"]').type('Asdf1234@')
+  cy.get('[data-qa="login-button"]').click()
+  cy.get("a[href='/product_details/1']").click()
+  cy.get("button[type='button']").click()
+  cy.get('u').click()
+  cy.get('.cart_quantity_delete > .fa').click()
+  cy.get('.text-center > b').should('have.text','Cart is empty!')
+
+
+ })
+
